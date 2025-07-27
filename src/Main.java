@@ -26,8 +26,17 @@ public class Main {
                   String titular1 = sc.next();
                   System.out.print("Informe a senha de acesso: ");
                   String senha1 = sc.next();
+                  System.out.println("================================");
 
-                  banco.acessarConta(
+                  if(banco.verificarContaCorrente(titular1, senha1)){
+                     Conta c =  banco.acessarContaCorrente(titular1, senha1);
+                     c.imprimirExtrato();
+                  }
+                  else{
+                      Conta c =  banco.acessarContaPupanca(titular1, senha1);
+                      c.imprimirExtrato();
+                  }
+                  break;
               case 2:
                   System.out.println("========Tela de cadastro========");
                   System.out.print("Informe o nome do titular: ");
@@ -37,7 +46,7 @@ public class Main {
                   System.out.println("Informe o tipo de conta que deseja cadastrar: ");
                   System.out.println("1 - Conta Corrente");
                   System.out.println("2 -  Conta Poupanca");
-                  System.out.println("========Tela de cadastro========");
+                  System.out.println("================================");
                   var tipo = sc.nextInt();
 
                   Conta conta = Conta.criarConta(tipo, titular, senha);
